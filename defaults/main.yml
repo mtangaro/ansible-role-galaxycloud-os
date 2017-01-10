@@ -93,3 +93,11 @@ proftpd_passive_port_high: 40000
 supervisor_manage_postgres: "False"
 supervisor_manage_nginx: "False"
 supervisor_manage_proftpd: "False"
+
+#################################
+# Isolation specific vars
+
+isolation_level: "open" # This var set the isolation level: 1. open 2. onedata 3. encryption
+
+
+
