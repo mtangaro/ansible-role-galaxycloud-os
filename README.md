@@ -1,7 +1,8 @@
 Role Name
 =========
 
-A brief description of the role goes here.
+# ansible-role-galaxycloud-os
+OS configuration for galaxycloud ansible role
 
 Requirements
 ------------
