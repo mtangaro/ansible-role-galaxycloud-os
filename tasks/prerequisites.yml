@@ -1,0 +1,99 @@
+---
+# Prerequisites installation recipe
+# Install CentOS 7 and Ubuntu 14.04 dependencies, creates directories, logrotate and password generator installation.
+
+#---
+#CentOS 7
+
+- name: Install CentOS7 packages
+  yum: name={{item}}
+       state=present
+  with_items:
+    - git
+    - vim
+    - wget
+    - logrotate
+    - python-virtualenv
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "RedHat"
+
+- name: Install the 'Development tools' package group
+  yum: name="@Development tools"
+       state=present
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "RedHat"
+
+#---
+# Ubuntu 14.04
+
+- name: Install Ubuntu packages
+  apt: name={{item}}
+       state=present
+  with_items:
+    - apt-transport-https
+    - software-properties-common
+    - git
+    - vim
+    - wget
+    - logrotate
+    - build-essential
+    - python-apt #needed by apt_repository ansible core module
+    - python-virtualenv
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "Debian"
+
+
+#########################################################
+# Create directories
+
+- name: Create log directory
+  file: path={{galaxy_log_path}}
+        state=directory
+        owner={{galaxy_user}}
+        group={{galaxy_user}}
+  become_user: root
+  become_method: sudo
+
+- name: Create export directory
+  file: path={{export_dir}}
+        state=directory
+        owner={{galaxy_user}}
+        group={{galaxy_user}}
+  become_user: root
+  become_method: sudo
+
+- name: Create reference data directory
+  file: path={{refdata_dir}}
+        state=directory
+        owner={{galaxy_user}}
+        group={{galaxy_user}}
+  become_user: root
+  become_method: sudo
+
+- name: Create /etc/galaxy directory
+  file: path=/etc/galaxy
+        state=directory
+        owner={{galaxy_user}}
+        group={{galaxy_user}}
+  become_user: root
+  become_method: sudo
+
+#########################################################
+# Configure Logrotate
+
+- name: Copy logrotate configuration file
+  template: src=logrotate.j2 dest=/etc/logrotate.d/galaxy
+  become_user: root
+  become_method: sudo
+
+
+#########################################################
+# Add python random password generator
+- name: Copy pwd-generator.py to /usr/local/bin
+  template: src=pwd_generator.j2 dest=/usr/local/bin/pwd-generator mode=a+x
+  become_user: root
+  become_method: sudo
+
