@@ -1,8 +1,7 @@
-Role Name
+ansible-role-galaxycloud-os
 =========
 
-# ansible-role-galaxycloud-os
-OS configuration for galaxycloud ansible role
+OS configuration for indigo-dc.galaxycloud ansible role
 
 Requirements
 ------------
