@@ -34,3 +34,5 @@ galaxy_instance_key_pub: ""
 # 3. encryption ---> IaaS block storage volume encrypted with AES is mounted
 
 isolation_level: "open"
+
+userdata_onedata_token: ""
