@@ -36,3 +36,23 @@ galaxy_instance_key_pub: ""
 isolation_level: "open"
 
 userdata_onedata_token: ""
+
+#################################
+# 1. open
+
+
+#################################
+# 2. onedata
+
+
+#################################
+# 3. encryption
+
+# Default values
+cipher_algorithm: 'aes-xts-plain64'
+keysize: '256'
+hash_algorithm: 'sha256'
+device: '/dev/vdb'
+cryptdev: 'crypt'
+mountpoint: '/export'
+filesystem: 'ext4'
