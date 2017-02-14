@@ -1,0 +1,9 @@
+---
+# Recipe to encrypt external volume
+
+- name: Copy indigo-dc.galaxycloud-os scripts
+  template: src=fast_luks.j2 dest=/usr/local/bin/fast_luks mode=a+x
+  become_user: root
+  become_method: sudo
+
+#- name: Wait for fast_luks pidfile creation
