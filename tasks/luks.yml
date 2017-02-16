@@ -14,13 +14,13 @@
 - name: Wait for fast_luks pidfile creation
   wait_for:
     path: /var/run/fast_luks/fast_luks.pid
-    timeout: 86400
+    timeout: 86400 # wait 24 hous FIXME
 
 - name: Wait for fast_luks finish (pidfile deletion)
   wait_for:
     path: /var/run/fast_luks/fast_luks.pid
     state: absent
-    timeout: 86400
+    timeout: 86400 # wait 24 hours FIXME
 
 - name: Check /etc/luks-cryptdev.conf. If not there something went wrong.
   wait_for:
