@@ -10,3 +10,5 @@
 
 # LUKS format external volume
 - include: luks.yml
+  become_user: "{{ galaxy_user }}"
+  become: true

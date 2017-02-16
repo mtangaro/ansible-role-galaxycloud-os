@@ -27,6 +27,11 @@ galaxy_instance_url: "http://{{ansible_default_ipv4.address}}/galaxy/"
 galaxy_instance_key_pub: ""
 
 #################################
+
+# Galaxy administrator e-mail address
+GALAXY_ADMIN_EMAIL: "admin@server.com"
+
+#################################
 # Isolation specific vars
 #
 # 1. open ---------> IaaS block storage volume is attached
@@ -48,7 +53,7 @@ userdata_onedata_token: ""
 #################################
 # 3. encryption
 
-# Default values
+# Encryption default values
 cipher_algorithm: 'aes-xts-plain64'
 keysize: '256'
 hash_algorithm: 'sha256'
