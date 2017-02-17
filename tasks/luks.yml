@@ -26,3 +26,12 @@
   wait_for:
     path: /etc/luks-cryptdev.conf
     state: present
+
+- name: Set permissions to {{ export_dir }} directory
+  file: path={{ export_dir }}
+        state=directory
+        owner={{ galaxy_user }}
+        group={{ galaxy_user }}
+  become_user: root
+  become_method: sudo
+
