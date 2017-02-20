@@ -10,5 +10,6 @@
 
 # LUKS format external volume
 - include: luks.yml
+  when: isolation_level == "encryption" 
   become_user: "{{ galaxy_user }}"
   become: true
