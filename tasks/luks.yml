@@ -18,18 +18,18 @@
 - name: Wait for fast-luks start (pidfile creation)
   wait_for:
     path: /var/run/fast_luks/fast-luks.pid
-    timeout: 86400 # wait 24 hous FIXME
+    timeout: 18000 # wait for 5 hous FIXME
 
 - name: Wait for fast-luks finish (pidfile deletion)
   wait_for:
     path: /var/run/fast_luks/fast-luks.pid
     state: absent
-    timeout: 86400 # wait 24 hours FIXME
+    timeout: 18000 # wait for 5 hours FIXME
 
 - name: Wait for fast_luks success file
   wait_for:
     path: /tmp/fast-luks.success # FIXED in fast-luks script
-    timeout: 86400 # wait 24 hours FIXME
+    timeout: 18000 # wait for 5 hours FIXME
     search_regex: "LUKS encryption completed."
 
 - name: Check /etc/luks-cryptdev.conf. If not present something went wrong
