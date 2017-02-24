@@ -1,7 +1,11 @@
 ansible-role-galaxycloud-os
 =========
 
-OS configuration for indigo-dc.galaxycloud ansible role
+Storage configuration for indigo-dc.galaxycloud ansible role.
+
+# 1. open ---------> IaaS block storage volume is attached
+# 2. onedata ------> OneData volume is mounted
+# 3. encryption ---> IaaS block storage volume encrypted with AES is mounted
 
 Requirements
 ------------
@@ -27,10 +31,15 @@ Including an example of how to use your role (for instance, with variables passe
       roles:
          - { role: username.rolename, x: 42 }
 
+    - hosts: localhost
+      connection: local
+      roles:
+        - { role: galaxycloud-os, GALAXY_ADMIN_EMAIL: "{{ galaxy_admin_mail }}", isolation_level: "encryption", galaxy_instance_key_pub: "{{ galaxy_instance_key_pub }}" }
+
 License
 -------
 
-BSD
+Apache 2
 
 Author Information
 ------------------
