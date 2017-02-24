@@ -1,13 +1,22 @@
 ---
 # Recipe to encrypt external volume
 
-- name: Copy indigo-dc.galaxycloud-os scripts
-  template: src={{ item.script }} dest={{ item.destination }} mode=a+x
-  with_items:
-    - { script: 'fast_luks.j2', destination: '/usr/local/bin/fast-luks' }
-    - { script: 'luksctl.j2', destination: '/usr/local/bin/luksctl' }
+#- name: Copy indigo-dc.galaxycloud-os scripts
+#  template: src={{ item.script }} dest={{ item.destination }} mode=a+x
+#  with_items:
+#    - { script: 'fast_luks.j2', destination: '/usr/local/bin/fast-luks' }
+#    - { script: 'luksctl.j2', destination: '/usr/local/bin/luksctl' }
+#  become_user: root
+#  become_method: sudo
+
+- template: src=luksctl.j2 dest=/usr/local/bin/luksctl mode=a+x
   become_user: root
   become_method: sudo
+
+- template: src=fast_luks.j2  dest=/usr/local/bin/fast-luks mode=a+x
+  become_user: root
+  become_method: sudo
+
 
 # check if /export is mountpoint before LUKS encryption
 - include: check_mountpoint.yml
