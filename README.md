@@ -3,9 +3,9 @@ ansible-role-galaxycloud-os
 
 Storage configuration for indigo-dc.galaxycloud ansible role.
 
-# 1. open ---------> IaaS block storage volume is attached
-# 2. onedata ------> OneData volume is mounted
-# 3. encryption ---> IaaS block storage volume encrypted with AES is mounted
+1. open ---------> IaaS block storage volume is attached
+2. onedata ------> OneData volume is mounted
+3. encryption ---> IaaS block storage volume encrypted with AES is mounted
 
 Requirements
 ------------
