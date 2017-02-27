@@ -1,6 +1,39 @@
 ---
 # Recipe to encrypt external volume
 
+- name: Install CentOS7 packages
+  yum: name={{item}}
+       state=present
+  with_items:
+    - cryptsetup-luks
+    - pv
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "RedHat"
+
+- name: Install the 'Development tools' package group
+  yum: name="@Development tools"
+       state=present
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "RedHat"
+
+#---
+# Ubuntu 14.04
+
+- name: Install Ubuntu packages
+  apt: name={{item}}
+       state=present
+  with_items:
+    - cryptsetup
+  become_user: root
+  become_method: sudo
+  when: ansible_os_family == "Debian"
+
+
+#---
+# LUKSformat volume
+
 - name: Copy indigo-dc.galaxycloud-os scripts
   template: src={{ item.script }} dest={{ item.destination }} mode=a+x
   with_items:
